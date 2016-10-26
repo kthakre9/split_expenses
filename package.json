@@ -1,0 +1,19 @@
+{
+  "name": "split_expenses",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kthakre9/split_expenses.git"
+  },
+  "author": "Ketki Thakre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kthakre9/split_expenses/issues"
+  },
+  "homepage": "https://github.com/kthakre9/split_expenses#readme"
+}
