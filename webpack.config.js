@@ -1,7 +1,12 @@
+var path = require('path');
+var pluginExtractText = require("extract-text-webpack-plugin");
+
 module.exports = {
+    context: path.join(__dirname, '/app'),
     entry: "./app.js",
     output: {
-       filename: "./app/build/bundle.js"
+        path: path.join(__dirname, '/app/build'),
+        filename: "bundle.js"
     },
     resolve: {
         modulesDirectories: ['web_modules','node_modules'],
@@ -11,7 +16,11 @@ module.exports = {
         loaders: [
             {
                 test: /\.css$/,
-                loader: "style-loader!css-loader"
+                loader: pluginExtractText.extract("style-loader", "css-loader")
+            },
+            {
+                test: /\.(jpg|png|svg|ttf|eot|woff|woff2)$/,
+                loader: 'file-loader?limit=10000'
             },
             {
                 test: /\.json$/,
@@ -20,10 +29,7 @@ module.exports = {
 
         ]
     },
-    node: {
-        dns: 'mock',
-        net: 'mock',
-        fs: 'empty',
-        tls: 'empty'
-    }
+    plugins: [
+        new  pluginExtractText('[name].css')
+    ]
 };

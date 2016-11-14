@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="splitExpense">
 <head>
     <meta charset="UTF-8">
-    <title>splitwise</title>
+    <title>Split</title>
+    <link href="build/main.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-    <h1>Hello!!</h1>
+<body class="bodytag">
+    <div ui-view="header"></div>
+    <div ui-view="content"></div>
     <script type="text/javascript" src="./build/bundle.js"></script>
 </body>
 </html>
