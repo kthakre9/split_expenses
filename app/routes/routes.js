@@ -1,6 +1,10 @@
-var app = angular.module('splitExpense', ['ui.router'])
+var app = angular.module('splitExpense', ['ui.router', 'ngCookies']);
 
-    .config(function ($stateProvider, $urlRouterProvider) {
+require('../controllers/loginController');
+require('../controllers/userController');
+require('../services/authService');
+
+    app.config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
@@ -22,7 +26,32 @@ var app = angular.module('splitExpense', ['ui.router'])
                         templateUrl: '/partials/header.html'
                     },
                     content: {
-                        templateUrl: '/partials/dashboard.html'
+                        templateUrl: '/partials/dashboard.html',
+                        controller: 'userController'
+                    }
+                }
+            })
+            .state('login', {
+                url: '/login',
+                views: {
+                    header:{
+                        templateUrl: '/partials/header.html'
+                    },
+                    content: {
+                        templateUrl: '/partials/login.html',
+                        controller: 'loginController'
+                    }
+                }
+            })
+            .state('signup', {
+                url: '/signup',
+                views: {
+                    header:{
+                        templateUrl: '/partials/header.html'
+                    },
+                    content: {
+                        templateUrl: '/partials/signUp.html',
+                        controller: 'userController'
                     }
                 }
             });

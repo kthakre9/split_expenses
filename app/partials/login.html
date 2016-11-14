@@ -1,0 +1,14 @@
+<div id = "login" class="Modal-box" role="dialog" ng-controller="loginController">
+    <div class="login">
+        <div class="groupInput">
+            <input name="username" type="text" class="form-control" ng-model="username" id="username" placeholder="Username">
+        </div>
+        <div class="groupInput">
+            <input name="password" type="password" class="form-control" ng-model="password" id="password" placeholder="Password">
+        </div>
+        <div class="footer">
+            <a class="button alt" ng-click="login()" >OK</a>
+            <a class="button alt" ng-click="cancel()">Cancel</a>
+        </div>
+    </div>
+</div>

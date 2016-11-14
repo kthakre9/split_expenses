@@ -13,3 +13,5 @@ local*.json
 #eclipse
 .settings/**
 .project
+
+.DS_Store

@@ -3,15 +3,15 @@
         <h3>Friends</h3>
         <ul class="friends-list">
             <li ng-repeat="user in users">
-                <img src="../assets/images/apim32.png" alt="friend" class="img-circle" />
+                <img src="../images/apim32.png" alt="friend" class="img-circle" />
                 <span>{{user.username}}</span>
             </li>
         </ul>
         <form class="form-horizontal" role="form">
             <div class="addfriends">
                 <label> Add friends</label>
-                <input type="text" name="username" ng-model="username" placeholder="email address">
-                <a class="button alt" ng-click="createUser()">Submit</a>
+                <input type="text" name="email" ng-model="email" placeholder="email address">
+                <a class="button alt" ng-click="sendEmail()">Submit</a>
             </div>
         </form>
     </section>
