@@ -4,18 +4,18 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-app.use(bodyParser.json()); // parse application/json
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'app')));
 
 //connect
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://root:1234@jello.modulusmongo.net:27017/X3egubyx");
+mongoose.connect('mongodb://localhost/apic');
 
 var User = require('./app/models/user');
 
 //Get Users
-app.get('/users', function (req, res) {
+app.get('/api/users', function (req, res) {
     User.find(function(err, users) {
         if (err) {
             res.send(err);
@@ -27,7 +27,7 @@ app.get('/users', function (req, res) {
     });
 });
 
-app.post('/users/authenticate', function(req, res, next){
+app.post('/api/users/authenticate', function(req, res, next){
     User.find({username: req.body.username}, function (err, user) {
         if (err) {
             res.send(err);
@@ -41,7 +41,7 @@ app.post('/users/authenticate', function(req, res, next){
 
 
 //create a user
-app.post('/users', function (req, res) {
+app.post('/api/users', function (req, res) {
 
    var user = new User({
        username : req.body.username,
@@ -51,16 +51,19 @@ app.post('/users', function (req, res) {
         lastName :''
    });
 
-    console.log(user);
-
     user.save(function (err) {
         if (err){
             res.send(err);
-        } else{
+        } else {
             res.json({ message: 'User created!' });
         }
 
     })
+});
+
+//Add a bill
+app.post('/api/addBill', function (req, res) {
+
 });
 
 app.listen(7002, function () {

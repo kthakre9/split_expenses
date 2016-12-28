@@ -1,45 +1,33 @@
 module.exports = angular.module('splitExpense')
 
-    .controller('userController', ['$scope', '$http' , '$state', function ($scope, $http, $state) {
+.controller('userController', ['$scope', 'UserService', 'AuthService','$http' , '$state', function ($scope, UserService, AuthService ,$http, $state) {
 
-        $http.get("/users").success(function (response) {
-            $scope.users = response;
-        });
+    $scope.createUser = createUser;
 
-        $scope.sendEmail = function(){
-            var email = $scope.email;
-             var data = {
-                 email: email
-             };
-            console.log("data" , data);
+    function createUser() {
 
-            $http.post('/sendEmail', data). success(function (response) {
-                console.log("data inside email", response);
-                //$scope.users = data;
-                $state.go('dashboard');
-            })
+        var user = {
+            username: $scope.username,
+            password: $scope.password,
+            email: $scope.email
         };
-
-        $scope.createUser = function() {
-            var username = $scope.username;
-            var password = $scope.password;
-            var email = $scope.email;
-
-            var data = {
-                username: username,
-                password: password,
-                email: email
-            };
-            console.log("data", data);
+        var creds = {
+            username: $scope.username,
+            password: $scope.password
+        }
 
 
-            $http.post('/users', data).success(function (response) {
-                console.log("data inside users", response);
-                //$scope.users = data;
-                $state.go('dashboard');
-            }).
-            error(function (err) {
-                console.log('Error: ' + err);
+        UserService.Create(user)
+        .then(function (response) {
+            AuthService.Login(creds, function(response) {
+                AuthService.SetCredentials(creds);
+                $state.go('app');
             });
-        };
-    }]);
+        });
+    };
+
+    $scope.addBill = function () {
+        var selectedUser = $scope.selectedUser;
+        console.log($scope.selectedUser);
+    };
+}]);

@@ -23,9 +23,9 @@
     <section id ="addBill">
         <h3>Add a Bill</h3>
         <div class="col">
-            <select class="form-control">
+            <select ng-model="selectedUser" class="form-control">
                 <option value="" disabled selected>With you and *</option>
-                <option ng-repeat="user in users">{{user.username}}</option>
+                <option value="{{user.username}}" ng-repeat="user in users">{{user.username}}</option>
             </select>
         </div>
 
@@ -41,7 +41,7 @@
             <input type="text" placeholder="Date *">
         </div>
 
-        <a href="#" class="button alt">Add Bill</a>
+        <a href="#" class="button alt" ng-click="addBill()">Add Bill</a>
 
     </section>
 </div>

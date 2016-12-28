@@ -1,5 +1,8 @@
 <div id="header" class="alt">
     <h1><a ui-sref="app">Split Expense</a></h1>
-    <a ui-sref="signup">Sign up</a>
-    <a ui-sref="login">Log in</a>
+    <a ng-show="$state.is('welcome')" ui-sref="signup">Sign up</a>
+    <a ng-show="$state.is('welcome')" ui-sref="login">Log in</a>
+
+    <a ng-show="$state.is('app')" ui-sref="account">Account</a>
+    <a ng-show="$state.is('app')" ui-sref="welcome" ng-click="logout()">Logout</a>
 </div>
